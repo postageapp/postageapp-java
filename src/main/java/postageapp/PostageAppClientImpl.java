@@ -22,6 +22,8 @@ import java.util.Map;
 public class PostageAppClientImpl implements PostageAppClient {
     private String apiVersion;
 
+    private String API_HOST = "api.postageapp.com";
+
     private static final class Endpoints {
         static final String SEND_MESSAGE = "send_message";
         static final String GET_MESSAGE_RECEIPT = "get_message_receipt";
@@ -77,14 +79,14 @@ public class PostageAppClientImpl implements PostageAppClient {
     }
 
     @Override
-    public List<MessageTransmission> getMessageTransmissions(String messageUid) {
-        List<MessageTransmission> transmissions = new ArrayList<MessageTransmission>();
+    public  Map<String, MessageTransmission> getMessageTransmissions(String messageUid) {
+        Map<String, MessageTransmission> transmissions = new HashMap<String, MessageTransmission>();
         this.sendRequest(Endpoints.GET_MESSAGE_TRANSMISSIONS, this.messageUidRequestString(messageUid));
         return transmissions;
     }
 
     @Override
-    public ProjectMetrics getMetrics() {
+    public Map<ProjectMetrics.WHEN, ProjectMetrics> getMetrics() {
         this.sendRequest(Endpoints.GET_METRICS, this.apiKeyRequestString());
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -106,7 +108,7 @@ public class PostageAppClientImpl implements PostageAppClient {
     private String sendRequest(String endpoint, String content) {
         URIBuilder uriBuilder = new URIBuilder()
                 .setScheme("https")
-                .setHost("api.postageapp.com")
+                .setHost(API_HOST)
                 .setPath(this.apiVersion + '/' + endpoint);
 
         try {

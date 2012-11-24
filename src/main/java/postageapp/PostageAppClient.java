@@ -1,6 +1,7 @@
 package postageapp;
 
 import java.util.List;
+import java.util.Map;
 
 import postageapp.models.*;
 import postageapp.params.MessageParams;
@@ -25,7 +26,7 @@ public interface PostageAppClient {
 
     public List<Message> getMessages();
 
-    public List<MessageTransmission> getMessageTransmissions(String messageUid);
+    public Map<String, MessageTransmission> getMessageTransmissions(String messageUid);
 
-    public ProjectMetrics getMetrics();
+    public Map<ProjectMetrics.WHEN, ProjectMetrics> getMetrics();
 }

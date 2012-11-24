@@ -8,4 +8,10 @@ package postageapp.models;
  * To change this template use File | Settings | File Templates.
  */
 public class ProjectMetrics {
+    public static enum WHEN {
+        HOUR, DATE, WEEK, MONTH
+    }
+
+    private int currentPercent, previousPercent,
+            diffPercent, currentValue, previousValue;
 }

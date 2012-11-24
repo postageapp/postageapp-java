@@ -1,7 +1,10 @@
 package postageapp.params;
 
+import com.google.gson.Gson;
+
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,13 +14,20 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class MessageParams extends HashMap<String, Object> {
-    private String from;
-    private String subject;
+    private String from, subject, template, recipientOverride, uid;
     private List<String> recipients;
-    private String template;
+    private Map<String, String> variables, content;
+    private Map<String, Map<String, String>> attachments;
 
     public MessageParams() {
+        this.variables = new HashMap<String, String>();
+        this.content = new HashMap<String, String>();
+        this.attachments = new HashMap<String, Map<String, String>>();
+    }
 
+    public MessageParams setUid(String uid) {
+        this.uid = uid;
+        return this;
     }
 
     public MessageParams setRecipients(List<String> recipients) {
@@ -40,10 +50,34 @@ public class MessageParams extends HashMap<String, Object> {
         return this;
     }
 
+    public MessageParams setVariable(String name, String value) {
+        this.variables.put(name, value);
+        return this;
+    }
+
+    public MessageParams setContentType(String type, String description) {
+        this.content.put(type, description);
+        return this;
+    }
+
+    public MessageParams setMessageRecipientOverride(String email) {
+        this.recipientOverride = email;
+        return this;
+    }
+
+    public MessageParams addAttachment(String name, String contentType, String content) {
+        Map<String, String> attachment = new HashMap<String, String>();
+        attachment.put("content_type", contentType);
+        attachment.put("content", content);
+
+        this.attachments.put(name, attachment);
+        return this;
+    }
+
     @Override
     public String toString() {
         // Construct a Json string instead of a normal map string
-        String json = "";
-        return json;
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
