@@ -47,7 +47,7 @@ public class PostageAppClientImpl implements PostageAppClient {
     }
 
     @Override
-    public int getMessageReceipt(int messageUid) {
+    public int getMessageReceipt(String messageUid) {
         this.sendRequest(Endpoints.GET_MESSAGE_RECEIPT, this.messageUidRequestString(messageUid));
         return 0;
     }
@@ -77,7 +77,7 @@ public class PostageAppClientImpl implements PostageAppClient {
     }
 
     @Override
-    public List<MessageTransmission> getMessageTransmissions(int messageUid) {
+    public List<MessageTransmission> getMessageTransmissions(String messageUid) {
         List<MessageTransmission> transmissions = new ArrayList<MessageTransmission>();
         this.sendRequest(Endpoints.GET_MESSAGE_TRANSMISSIONS, this.messageUidRequestString(messageUid));
         return transmissions;
@@ -96,10 +96,10 @@ public class PostageAppClientImpl implements PostageAppClient {
         return new Gson().toJson(params);
     }
 
-    private String messageUidRequestString(int messageUid) {
+    private String messageUidRequestString(String messageUid) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("apiKey", this.apiKey);
-        params.put("uid", Integer.toString(messageUid));
+        params.put("uid", messageUid);
         return new Gson().toJson(params);
     }
 

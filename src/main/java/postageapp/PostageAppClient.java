@@ -15,7 +15,7 @@ import postageapp.params.MessageParams;
 public interface PostageAppClient {
     public void sendMessage(MessageParams message);
 
-    public int getMessageReceipt(int messageUid);
+    public int getMessageReceipt(String messageUid);
 
     public List<String> getMethodList();
 
@@ -25,7 +25,7 @@ public interface PostageAppClient {
 
     public List<Message> getMessages();
 
-    public List<MessageTransmission> getMessageTransmissions(int messageUid);
+    public List<MessageTransmission> getMessageTransmissions(String messageUid);
 
     public ProjectMetrics getMetrics();
 }
