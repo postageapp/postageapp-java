@@ -3,6 +3,7 @@ package postageapp;
 import java.util.List;
 
 import postageapp.models.*;
+import postageapp.params.MessageParams;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,9 +13,9 @@ import postageapp.models.*;
  * To change this template use File | Settings | File Templates.
  */
 public interface PostageAppClient {
-    public void sendMessage();
+    public void sendMessage(MessageParams message);
 
-    public int getMessageReceipt();
+    public int getMessageReceipt(int messageUid);
 
     public List<String> getMethodList();
 
@@ -24,7 +25,7 @@ public interface PostageAppClient {
 
     public List<Message> getMessages();
 
-    public List<MessageTransmission> getMessageTransmissions();
+    public List<MessageTransmission> getMessageTransmissions(int messageUid);
 
     public ProjectMetrics getMetrics();
 }
