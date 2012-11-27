@@ -8,5 +8,5 @@ package postageapp.http;
  * To change this template use File | Settings | File Templates.
  */
 public interface PostageAppHttpClient {
-    public String post(String url, String postData);
+    public String post(String url, String postData) throws PostageAppException;
 }

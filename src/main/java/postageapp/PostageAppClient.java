@@ -3,6 +3,7 @@ package postageapp;
 import java.util.List;
 import java.util.Map;
 
+import postageapp.http.PostageAppException;
 import postageapp.models.*;
 import postageapp.params.MessageParams;
 
@@ -14,19 +15,19 @@ import postageapp.params.MessageParams;
  * To change this template use File | Settings | File Templates.
  */
 public interface PostageAppClient {
-    public void sendMessage(MessageParams message);
+    public long sendMessage(MessageParams message) throws PostageAppException;
 
-    public int getMessageReceipt(String messageUid);
+    public long getMessageReceipt(String messageUid) throws PostageAppException;
 
-    public List<String> getMethodList();
+    public String[] getMethodList() throws PostageAppException;
 
-    public AccountInfo getAccountInfo();
+    public AccountInfo getAccountInfo() throws PostageAppException;
 
-    public ProjectInfo getProjectInfo();
+    public ProjectInfo getProjectInfo() throws PostageAppException;
 
-    public List<Message> getMessages();
+    public List<Message> getMessages() throws PostageAppException;
 
-    public Map<String, MessageTransmission> getMessageTransmissions(String messageUid);
+    public MessageTransmissonsResponse getMessageTransmissions(String messageUid) throws PostageAppException;
 
-    public Map<ProjectMetrics.WHEN, ProjectMetrics> getMetrics();
+    public Map<String, Map<String, ProjectMetrics>> getMetrics() throws PostageAppException;
 }
