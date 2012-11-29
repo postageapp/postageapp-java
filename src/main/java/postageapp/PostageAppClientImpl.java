@@ -52,14 +52,14 @@ public class PostageAppClientImpl implements PostageAppClient {
     public long sendMessage(MessageParams params) throws PostageAppException {
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.SEND_MESSAGE, params.toString()));
         Map<String, String> message = (Map<String, String>) data.get("message");
-        return Long.parseLong((String) message.get("id"));
+        return Long.parseLong(message.get("id"));
     }
 
     @Override
     public long getMessageReceipt(String messageUid) throws PostageAppException {
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_MESSAGE_RECEIPT, this.messageUidRequestString(messageUid)));
         Map<String, String> message = (Map<String, String>) data.get("message");
-        return Long.parseLong((String) message.get("id"));
+        return Long.parseLong(message.get("id"));
     }
 
     @Override

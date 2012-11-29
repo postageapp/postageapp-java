@@ -24,7 +24,7 @@ public class PostageAppException extends Exception {
 
     @Override
     public String toString() {
-        StringBuffer strBuffer = new StringBuffer();
+        StringBuilder strBuffer = new StringBuilder();
         strBuffer.append("Error: ");
 
         if (this.status != null) {
