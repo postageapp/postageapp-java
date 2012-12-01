@@ -1,5 +1,8 @@
 package postageapp.models;
 
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,18 +17,16 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class PostageModel {
-    private final DateFormat dateFormat = new SimpleDateFormat("YYY-MM-dd hh:mm:ss");
     private Map<String, ?> json;
+    private DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
 
     public PostageModel(Map<String, ?> json) {
         this.json = json;
     }
 
     protected Date dateFromString(String date) {
-        try {
-            return this.dateFormat.parse((String) json.get("created_at"));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (date != null) {
+            return this.formatter.parseDateTime(date).toDate();
         }
 
         return null;

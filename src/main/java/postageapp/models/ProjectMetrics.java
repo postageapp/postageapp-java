@@ -12,37 +12,37 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class ProjectMetrics extends PostageModel {
-    private int currentPercent, previousPercent,
+    private double currentPercent, previousPercent,
             diffPercent, currentValue, previousValue;
 
     public ProjectMetrics(Map<String, ?> json) {
         super(json);
 
-        this.currentPercent = (Integer) json.get("currentPercent");
-        this.previousPercent = (Integer) json.get("previousPercent");
-        this.diffPercent = (Integer) json.get("diffPercent");
-        this.currentValue = (Integer) json.get("currentValue");
-        this.previousPercent = (Integer) json.get("previousPercent");
-        this.previousValue = (Integer) json.get("previousValue");
+        this.currentPercent = (Double) json.get("current_percent");
+        this.previousPercent = (Double) json.get("previous_percent");
+        this.diffPercent = (Double) json.get("diff_percent");
+        this.currentValue = (Double) json.get("current_value");
+        this.previousPercent = (Double) json.get("previous_percent");
+        this.previousValue = (Double) json.get("previous_value");
     }
 
-    public int getCurrentPercent() {
+    public double getCurrentPercent() {
         return currentPercent;
     }
 
-    public int getCurrentValue() {
+    public double getCurrentValue() {
         return currentValue;
     }
 
-    public int getDiffPercent() {
+    public double getDiffPercent() {
         return diffPercent;
     }
 
-    public int getPreviousPercent() {
+    public double getPreviousPercent() {
         return previousPercent;
     }
 
-    public int getPreviousValue() {
+    public double getPreviousValue() {
         return previousValue;
     }
 }

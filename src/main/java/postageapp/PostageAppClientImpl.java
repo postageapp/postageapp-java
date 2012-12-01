@@ -164,7 +164,7 @@ public class PostageAppClientImpl implements PostageAppClient {
 
         this.checkForError(response);
 
-        return (Map<String, ?>) response.get("data");
+        return (Map<String, ?>) responseMap.get("data");
     }
 
     private void checkForError(Map<String, ?> responseJson) throws PostageAppException {

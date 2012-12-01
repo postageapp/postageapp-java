@@ -1,5 +1,6 @@
 package postageapp.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,11 +11,11 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class MessageTransmissonsResponse {
-    private String messageId;
-    private Map<String, MessageTransmission> transmissions;
+    private double messageId;
+    private Map<String, MessageTransmission> transmissions = new HashMap<String, MessageTransmission>();
 
     public MessageTransmissonsResponse(Map<String, ?> json) {
-        Map<String, String> messageMap = (Map<String, String>) json.get("message");
+        Map<String, Double> messageMap = (Map<String, Double>) json.get("message");
         this.messageId = messageMap.get("id");
 
         Map<String, ?> transmissionsMap = (Map<String, ?>) json.get("transmissions");
@@ -22,5 +23,13 @@ public class MessageTransmissonsResponse {
         for (String email : transmissionsMap.keySet()) {
             this.transmissions.put(email, new MessageTransmission((Map<String, String>) transmissionsMap.get(email)));
         }
+    }
+
+    public double getMessageId() {
+        return this.messageId;
+    }
+
+    public Map<String, MessageTransmission> getTransmissions() {
+        return this.transmissions;
     }
 }

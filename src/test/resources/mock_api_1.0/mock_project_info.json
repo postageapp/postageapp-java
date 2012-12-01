@@ -1,0 +1,20 @@
+{
+    "response": {
+        "status": "ok",
+        "uid": null
+    },
+    "data": {
+        "project": {
+            "name": "Java API Test",
+            "url": "https://api.postageapp.com/projects/1",
+            "transmissions": {
+                "today": 1,
+                "this_month": 1,
+                "overall": 1
+            },
+            "users": {
+                "tester@test.com": "Test Name"
+            }
+        }
+    }
+}

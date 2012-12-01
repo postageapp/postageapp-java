@@ -15,7 +15,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class MessageTransmission extends PostageModel {
-    private String status, resultCode, resultMessage;
+    private String status, resultCode, errorMessage;
     private Date createdAt, failedAt, openedAt;
 
     public MessageTransmission(Map<String, ?> json) {
@@ -26,7 +26,7 @@ public class MessageTransmission extends PostageModel {
         this.failedAt = this.dateFromString((String) json.get("failed_at"));
         this.openedAt = this.dateFromString((String) json.get("opened_at"));
         this.resultCode = (String) json.get("result_code");
-        this.resultMessage = (String) json.get("result_message");
+        this.errorMessage = (String) json.get("error_message");
     }
 
     public Date getCreatedAt() {
@@ -45,8 +45,8 @@ public class MessageTransmission extends PostageModel {
         return resultCode;
     }
 
-    public String getResultMessage() {
-        return resultMessage;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
     public String getStatus() {

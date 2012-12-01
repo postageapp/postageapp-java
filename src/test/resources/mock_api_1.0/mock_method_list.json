@@ -1,0 +1,9 @@
+{
+    "response": {
+        "status": "ok",
+        "uid": null
+    },
+    "data": {
+        "methods": "get_account_info, get_message_receipt, get_message_transmissions, get_messages, get_method_list, get_metrics, get_project_info, message_delivery_status, message_status, send_message, test_mail_server, test_recipient"
+    }
+}

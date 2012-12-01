@@ -1,0 +1,243 @@
+{
+    "response": {
+        "status": "ok",
+        "uid": null,
+        "message": "metrics"
+    },
+    "data": {
+        "metrics": {
+            "hour": {
+                "delivered": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "opened": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "clicked": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "failed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "rejected": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "spammed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "created": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 2,
+                    "previous_value": 0
+                },
+                "queued": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                }
+            },
+            "date": {
+                "delivered": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "opened": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "clicked": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "failed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "rejected": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "spammed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "created": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 2,
+                    "previous_value": 0
+                },
+                "queued": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                }
+            },
+            "week": {
+                "delivered": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "opened": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "clicked": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "failed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "rejected": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "spammed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "created": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 2,
+                    "previous_value": 0
+                },
+                "queued": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                }
+            },
+            "month": {
+                "delivered": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "opened": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "clicked": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "failed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "rejected": {
+                    "current_percent": 50,
+                    "previous_percent": 0,
+                    "diff_percent": 50,
+                    "current_value": 1,
+                    "previous_value": 0
+                },
+                "spammed": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                },
+                "created": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 2,
+                    "previous_value": 0
+                },
+                "queued": {
+                    "current_percent": 0,
+                    "previous_percent": 0,
+                    "diff_percent": 0,
+                    "current_value": 0,
+                    "previous_value": 0
+                }
+            }
+        }
+    }
+}
