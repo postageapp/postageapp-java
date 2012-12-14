@@ -9,13 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stephanleroux
- * Date: 2012-11-26
- * Time: 8:37 PM
- * To change this template use File | Settings | File Templates.
- */
 public abstract class PostageModel {
     private Map<String, ?> json;
     private DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");

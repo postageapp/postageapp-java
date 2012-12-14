@@ -14,13 +14,6 @@ import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.util.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stephanleroux
- * Date: 2012-11-23
- * Time: 6:28 PM
- * To change this template use File | Settings | File Templates.
- */
 public class PostageAppClientImpl implements PostageAppClient {
     private final String apiVersion;
 
@@ -37,19 +30,24 @@ public class PostageAppClientImpl implements PostageAppClient {
         static final String GET_METRICS = "get_metrics";
     }
 
-    private final String apiKey;
+    private String apiKey;
     private final PostageAppHttpClient httpClient;
     private final Gson gson;
 
-    public PostageAppClientImpl(final String apiKey) {
-        this.apiKey = apiKey;
+    public PostageAppClientImpl() {
         this.apiVersion = "v.1.0";
         this.httpClient = new PostageAppHttpClientImpl(new DefaultHttpClient());
         this.gson = new Gson();
     }
 
+    public void setAPIKey(final String apiKey) {
+        this.apiKey = apiKey;
+    }
+
     @Override
     public long sendMessage(MessageParams params) throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.SEND_MESSAGE, params.toString()));
         Map<String, String> message = (Map<String, String>) data.get("message");
         return Long.parseLong(message.get("id"));
@@ -57,6 +55,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 
     @Override
     public long getMessageReceipt(String messageUid) throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_MESSAGE_RECEIPT, this.messageUidRequestString(messageUid)));
         Map<String, String> message = (Map<String, String>) data.get("message");
         return Long.parseLong(message.get("id"));
@@ -64,6 +64,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 
     @Override
     public String[] getMethodList() throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_METHOD_LIST, this.apiKeyRequestString()));
         String methods = (String) data.get("methods");
         return methods.split(", ");
@@ -71,6 +73,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 
     @Override
     public AccountInfo getAccountInfo() throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_ACCOUNT_INFO, this.apiKeyRequestString()));
         AccountInfo accountInfo = new AccountInfo((Map<String, ?>) data.get("account"));
         return accountInfo;
@@ -78,6 +82,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 
     @Override
     public ProjectInfo getProjectInfo() throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_PROJECT_INFO, this.apiKeyRequestString()));
         ProjectInfo projectInfo = new ProjectInfo((Map<String, ?>) data.get("project"));
         return projectInfo;
@@ -85,6 +91,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 
     @Override
     public List<Message> getMessages() throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_MESSAGES, this.apiKeyRequestString()));
         List<Message> messages = new ArrayList<Message>();
 
@@ -97,12 +105,16 @@ public class PostageAppClientImpl implements PostageAppClient {
 
     @Override
     public MessageTransmissonsResponse getMessageTransmissions(String messageUid) throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_MESSAGE_TRANSMISSIONS, this.messageUidRequestString(messageUid)));
         return new MessageTransmissonsResponse(data);
     }
 
     @Override
     public Map<String, Map<String, ProjectMetrics>> getMetrics() throws PostageAppException {
+        checkAPIKey();
+
         Map<String, ?> data = this.getDataFromResponse(this.sendRequest(Endpoints.GET_METRICS, this.apiKeyRequestString()));
         Map<String, ?> metrics = (Map<String, ?>) data.get("metrics");
         Map<String, Map<String, ProjectMetrics>> metricsMap = new HashMap<String, Map<String, ProjectMetrics>>();
@@ -175,6 +187,12 @@ public class PostageAppClientImpl implements PostageAppClient {
             exception.setMessageUid((String) responseJson.get("uid"));
             exception.setStatus((String) responseJson.get("status"));
             throw exception;
+        }
+    }
+
+    private void checkAPIKey() throws PostageAppException {
+        if (this.apiKey == null) {
+            throw new PostageAppException("No API key set! Please set your API key before using the API.");
         }
     }
 }

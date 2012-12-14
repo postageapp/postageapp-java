@@ -7,13 +7,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stephanleroux
- * Date: 2012-11-26
- * Time: 7:01 PM
- * To change this template use File | Settings | File Templates.
- */
 public class PostageAppHttpClientImpl implements PostageAppHttpClient {
     private final HttpClient httpClient;
 
@@ -26,7 +19,8 @@ public class PostageAppHttpClientImpl implements PostageAppHttpClient {
         HttpPost postRequest = new HttpPost(url);
         postRequest.addHeader(new BasicHeader("Content-Type", "application/json"));
 
-        HttpResponse postResponse = null;
+        HttpResponse postResponse;
+
         try {
             postRequest.setEntity(new StringEntity(postData));
             postResponse = this.httpClient.execute(postRequest);

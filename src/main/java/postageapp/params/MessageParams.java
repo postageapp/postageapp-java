@@ -1,28 +1,25 @@
 package postageapp.params;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stephanleroux
- * Date: 2012-11-23
- * Time: 6:34 PM
- * To change this template use File | Settings | File Templates.
- */
 public class MessageParams extends HashMap<String, Object> {
     private String from, subject, template, recipientOverride, uid;
     private List<String> recipients;
-    private Map<String, String> variables, content;
+    private Map<String, String> variables, content, headers;
     private Map<String, Map<String, String>> attachments;
+    private final Gson gson = new Gson();
 
     public MessageParams() {
         this.variables = new HashMap<String, String>();
         this.content = new HashMap<String, String>();
         this.attachments = new HashMap<String, Map<String, String>>();
+        this.headers = new HashMap<String, String>();
     }
 
     public MessageParams setUid(String uid) {
@@ -35,13 +32,8 @@ public class MessageParams extends HashMap<String, Object> {
         return this;
     }
 
-    public MessageParams setSubject(String subject) {
-        this.subject = subject;
-        return this;
-    }
-
-    public MessageParams setFrom(String from) {
-        this.from = from;
+    public MessageParams addHeader(String name, String text) {
+        this.headers.put(name, text);
         return this;
     }
 
@@ -55,7 +47,7 @@ public class MessageParams extends HashMap<String, Object> {
         return this;
     }
 
-    public MessageParams setContentType(String type, String description) {
+    public MessageParams addContentType(String type, String description) {
         this.content.put(type, description);
         return this;
     }
@@ -77,7 +69,18 @@ public class MessageParams extends HashMap<String, Object> {
     @Override
     public String toString() {
         // Construct a Json string instead of a normal map string
-        Gson gson = new Gson();
-        return gson.toJson(this);
+        Type mapType = new TypeToken<Map<String, ?>>() {
+        }.getType();
+
+        Map<String, Object> mappedParams = new HashMap<String, Object>();
+        mappedParams.put("recipients", this.recipients);
+        mappedParams.put("headers", this.headers);
+        mappedParams.put("content", this.content);
+        mappedParams.put("attachments", this.attachments);
+        mappedParams.put("template", this.template);
+        mappedParams.put("variables", this.variables);
+        mappedParams.put("recipient_override", this.recipientOverride);
+
+        return gson.toJson(mappedParams, mapType);
     }
 }

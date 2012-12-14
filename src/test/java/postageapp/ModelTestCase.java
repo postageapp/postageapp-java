@@ -9,13 +9,6 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stephanleroux
- * Date: 2012-11-28
- * Time: 7:57 PM
- * To change this template use File | Settings | File Templates.
- */
 public abstract class ModelTestCase extends TestCase {
     protected String loadModelFixture(String fixturePath) {
         InputStream jsonStream = getClass().getClassLoader().getResourceAsStream(fixturePath);

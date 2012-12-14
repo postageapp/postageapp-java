@@ -11,13 +11,6 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stephanleroux
- * Date: 2012-11-28
- * Time: 7:56 PM
- * To change this template use File | Settings | File Templates.
- */
 public class AccountInfoTest extends ModelTestCase {
     @Test
     public void testParseAccountInfoJson() throws Exception {

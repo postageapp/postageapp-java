@@ -3,13 +3,6 @@ package postageapp.models;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stephanleroux
- * Date: 2012-11-26
- * Time: 8:30 PM
- * To change this template use File | Settings | File Templates.
- */
 public class MessageTransmissonsResponse {
     private double messageId;
     private Map<String, MessageTransmission> transmissions = new HashMap<String, MessageTransmission>();
