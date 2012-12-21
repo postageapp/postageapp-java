@@ -18,13 +18,9 @@ Along with the main package you will need the following dependencies:
 * [Google GSON](http://code.google.com/p/google-gson/)
 	* 2.2.2
 
-If you are using maven you can also add use the maven dependency thanks to Sonatype/Nexus:
+If you are using maven you can also add use the maven dependency thanks to Sonatype/Nexus (Coming soon...):
 
-	 <dependency>
-     	<groupId>com.github.sleroux</groupId>
-        <artifactId>postageapp</artifactId>
-        <version>1.0</version>
-     </dependency>
+
 Also make sure to add in the maven dependencies for HTTP Components, Commons and Google GSON
      
 ### Usage
