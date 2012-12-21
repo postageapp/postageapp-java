@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class PostageAppExceptionTest {
     private static final String errorString1 = "Error -- Status: fail Message Uid: 1928383702992 Message: Something went terribly wrong...";
     private static final String errorString2 = "Error -- Message Uid: 1928383702992 Message: Something went terribly wrong...";
-    private static final String errorString3 = "Error -- Status: fail ";
+    private static final String errorString3 = "Error -- Status: fail Message: Something went terribly wrong...";
 
     @Test
     public void testExceptionFormatsFullError() {

@@ -7,12 +7,13 @@ import java.util.Map;
 
 public class ProjectMetricTest extends ModelTestCase {
     @Test
+    @SuppressWarnings("unchecked")
     public void testProjectMetricJson() {
-        Map<String, ?> dataObj = this.getDataFromResponse(this.loadModelFixture("mock_api_1.0/mock_metrics.json"));
+        Map<String, Object> dataObj = this.getDataFromResponse(this.loadModelFixture("mock_api_1.0/mock_metrics.json"));
 
-        Map<String, ?> metrics = (Map<String, ?>) dataObj.get("metrics");
-        Map<String, ?> hour = (Map<String, ?>) metrics.get("hour");
-        ProjectMetrics metricsForHour = new ProjectMetrics((Map<String, ?>) hour.get("delivered"));
+        Map<String, Object> metrics = (Map<String, Object>) dataObj.get("metrics");
+        Map<String, Object> hour = (Map<String, Object>) metrics.get("hour");
+        ProjectMetrics metricsForHour = new ProjectMetrics((Map<String, Object>) hour.get("delivered"));
 
         assertNotNull(metricsForHour.getCurrentPercent());
         assertNotNull(metricsForHour.getCurrentValue());

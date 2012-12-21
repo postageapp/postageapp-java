@@ -1,9 +1,9 @@
 package postageapp;
 
 public class PostageAppFactory {
-    private final PostageAppClient singletonClient = new PostageAppClientImpl();
+    private static final PostageAppClient singletonClient = new PostageAppClientImpl();
 
-    public PostageAppClient getSingleton() {
+    public static PostageAppClient getSingleton() {
         return singletonClient;
     }
 }

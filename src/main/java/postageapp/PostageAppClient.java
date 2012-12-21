@@ -10,9 +10,9 @@ import postageapp.params.MessageParams;
 public interface PostageAppClient {
     public void setAPIKey(final String apiKey);
 
-    public long sendMessage(MessageParams message) throws PostageAppException;
+    public double sendMessage(MessageParams message) throws PostageAppException;
 
-    public long getMessageReceipt(String messageUid) throws PostageAppException;
+    public double getMessageReceipt(String messageUid) throws PostageAppException;
 
     public String[] getMethodList() throws PostageAppException;
 
@@ -22,7 +22,7 @@ public interface PostageAppClient {
 
     public List<Message> getMessages() throws PostageAppException;
 
-    public MessageTransmissonsResponse getMessageTransmissions(String messageUid) throws PostageAppException;
+    public MessageTransmissionsResponse getMessageTransmissions(String messageUid) throws PostageAppException;
 
     public Map<String, Map<String, ProjectMetrics>> getMetrics() throws PostageAppException;
 }

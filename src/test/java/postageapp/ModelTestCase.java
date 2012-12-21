@@ -23,14 +23,15 @@ public abstract class ModelTestCase extends TestCase {
         return jsonString;
     }
 
-    protected Map<String, ?> getDataFromResponse(String jsonString) {
+    @SuppressWarnings("unchecked")
+    protected Map<String, Object> getDataFromResponse(String jsonString) {
         Gson gson = new Gson();
 
         Type mapType = new TypeToken<Map<String, ?>>() {
         }.getType();
         Map<String, ?> responseMap = gson.fromJson(jsonString, mapType);
 
-        return (Map<String, ?>) responseMap.get("data");
+        return (Map<String, Object>) responseMap.get("data");
     }
 
 }

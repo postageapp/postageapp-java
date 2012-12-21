@@ -1,7 +1,6 @@
 package postageapp.models;
 
-import com.sun.org.apache.xerces.internal.impl.dv.xs.MonthDayDV;
-
+import java.util.HashMap;
 import java.util.Map;
 
 public class ProjectMetrics extends PostageModel {
@@ -9,13 +8,12 @@ public class ProjectMetrics extends PostageModel {
             diffPercent, currentValue, previousValue;
 
     public ProjectMetrics(Map<String, ?> json) {
-        super(json);
+        super();
 
         this.currentPercent = (Double) json.get("current_percent");
         this.previousPercent = (Double) json.get("previous_percent");
         this.diffPercent = (Double) json.get("diff_percent");
         this.currentValue = (Double) json.get("current_value");
-        this.previousPercent = (Double) json.get("previous_percent");
         this.previousValue = (Double) json.get("previous_value");
     }
 
@@ -37,5 +35,16 @@ public class ProjectMetrics extends PostageModel {
 
     public double getPreviousValue() {
         return previousValue;
+    }
+    
+    @Override
+    public String toString() {
+        Map<String, Object> mappedParams = new HashMap<String, Object>();
+        mappedParams.put("currentPercent", this.currentPercent);
+        mappedParams.put("previousPercent", this.previousPercent);
+        mappedParams.put("diffPercent", this.diffPercent);
+        mappedParams.put("currentValue", this.currentValue);
+        mappedParams.put("previousValue", this.previousValue);
+        return this.gson.toJson(mappedParams, this.mapType);
     }
 }

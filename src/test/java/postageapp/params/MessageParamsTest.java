@@ -1,6 +1,5 @@
 package postageapp.params;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 import postageapp.ModelTestCase;
 
@@ -27,6 +26,6 @@ public class MessageParamsTest extends ModelTestCase {
 
         // Simple test to verify we are generating some correct json
         String actual = this.loadModelFixture("request_fixtures/actual_send_message.json");
-        assertEquals(actual, params.toString());
+        assertEquals(actual, params.buildRequest("apikey"));
     }
 }

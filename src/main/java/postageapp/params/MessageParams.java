@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MessageParams extends HashMap<String, Object> {
-    private String from, subject, template, recipientOverride, uid;
+	private static final long serialVersionUID = 1L;
+	
+	private String template, recipientOverride, uid;
     private List<String> recipients;
     private Map<String, String> variables, content, headers;
     private Map<String, Map<String, String>> attachments;
@@ -66,12 +68,11 @@ public class MessageParams extends HashMap<String, Object> {
         return this;
     }
 
-    @Override
-    public String toString() {
+    public String buildRequest(String apiKey) {
         // Construct a Json string instead of a normal map string
-        Type mapType = new TypeToken<Map<String, ?>>() {
+        Type mapType = new TypeToken<Map<String, Object>>() {
         }.getType();
-
+        
         Map<String, Object> mappedParams = new HashMap<String, Object>();
         mappedParams.put("recipients", this.recipients);
         mappedParams.put("headers", this.headers);
@@ -81,6 +82,11 @@ public class MessageParams extends HashMap<String, Object> {
         mappedParams.put("variables", this.variables);
         mappedParams.put("recipient_override", this.recipientOverride);
 
-        return gson.toJson(mappedParams, mapType);
+        Map<String, Object> requestMap = new HashMap<String, Object>();
+        requestMap.put("api_key", apiKey);
+        requestMap.put("arguments", mappedParams);
+        requestMap.put("uid", this.uid);
+        
+        return gson.toJson(requestMap, mapType);
     }
 }

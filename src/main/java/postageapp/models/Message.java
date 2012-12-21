@@ -1,6 +1,7 @@
 package postageapp.models;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Message extends PostageModel {
@@ -9,7 +10,7 @@ public class Message extends PostageModel {
     private Date createdAt, willPurgeAt;
 
     public Message(String uid, Map<String, ?> json) {
-        super(json);
+        super();
 
         this.uid = uid;
         this.template = (String) json.get("template");
@@ -46,5 +47,18 @@ public class Message extends PostageModel {
 
     public Date getWillPurgeAt() {
         return willPurgeAt;
+    }
+    
+    @Override
+    public String toString() {
+        Map<String, Object> mappedParams = new HashMap<String, Object>();
+        mappedParams.put("uid", this.uid);
+        mappedParams.put("createdAt", this.createdAt);
+        mappedParams.put("template", this.template);
+        mappedParams.put("transmissionsCompleted", this.transmissionsCompleted);
+        mappedParams.put("transmissionsFailed", this.transmissionsFailed);
+        mappedParams.put("transmissionsTotal", this.transmissionsTotal);
+        mappedParams.put("willPurgeAt", this.willPurgeAt);
+        return this.gson.toJson(mappedParams, this.mapType);
     }
 }

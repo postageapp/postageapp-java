@@ -1,7 +1,11 @@
 package postageapp.http;
 
 public class PostageAppException extends Exception {
-    private String status, messageUid;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String status, messageUid;
 
     public PostageAppException(final String message) {
         super(message);
@@ -28,9 +32,7 @@ public class PostageAppException extends Exception {
             strBuffer.append("Message Uid: ").append(this.messageUid).append(" ");
         }
 
-        if (this.messageUid != null) {
-            strBuffer.append("Message: ").append(this.getMessage());
-        }
+        strBuffer.append("Message: ").append(this.getMessage());
 
         return strBuffer.toString();
     }

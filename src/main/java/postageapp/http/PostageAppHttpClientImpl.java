@@ -29,7 +29,7 @@ public class PostageAppHttpClientImpl implements PostageAppHttpClient {
         }
 
         if (postResponse.getStatusLine().getStatusCode() / 100 != 2) {
-            throw new PostageAppException("Unable to connect to PostageApp servers.");
+            throw new PostageAppException("Unable to connect to PostageApp servers for API endpoint " + url);
         }
 
         try {

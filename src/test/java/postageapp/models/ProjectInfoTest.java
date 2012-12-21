@@ -7,10 +7,11 @@ import java.util.Map;
 
 public class ProjectInfoTest extends ModelTestCase {
     @Test
+    @SuppressWarnings("unchecked")
     public void testParseProjectIntoJson() {
         Map<String, ?> dataObj = this.getDataFromResponse(this.loadModelFixture("mock_api_1.0/mock_project_info.json"));
 
-        ProjectInfo info = new ProjectInfo((Map<String, ?>)dataObj.get("project"));
+        ProjectInfo info = new ProjectInfo((Map<String, Object>)dataObj.get("project"));
 
         assertNotNull(info);
         assertNotNull(info.getName());

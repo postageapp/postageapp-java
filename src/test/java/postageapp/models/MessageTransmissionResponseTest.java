@@ -9,7 +9,7 @@ public class MessageTransmissionResponseTest extends ModelTestCase {
     @Test
     public void testParseMessageTransmissionResponseJson() {
         Map<String, ?> data = this.getDataFromResponse(this.loadModelFixture("mock_api_1.0/mock_message_transmissions.json"));
-        MessageTransmissonsResponse response = new MessageTransmissonsResponse(data);
+        MessageTransmissionsResponse response = new MessageTransmissionsResponse(data);
         assertNotNull(response);
         assertNotNull(response.getMessageId());
         assertNotNull(response.getTransmissions());
