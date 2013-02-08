@@ -4,46 +4,83 @@ PostageApp for Java
 
 ###Installation
 
-You can get started by downloading the Postage App .jar from the Downloads page. Along with the main .jar you will need the following dependencies:
+####Maven
 
-Along with the main package you will need the following dependencies:
+To get started with PostageApp using maven, you can add the following to your pom.xml file:
 
-* [Apache HTTP Components](http://hc.apache.org/)
-	* httpcore 4.2.3
-	* httpclient 4.2.2
+	<dependencies>
+		...
+	    <dependency>
+	      <groupId>com.github.sleroux</groupId>
+	      <artifactId>postageapp</artifactId>
+	      <version>1.1.0</version>
+	    </dependency>
+	    ...
+	</dependencies>
 	
-* [Apache Commons](http://commons.apache.org/io/)
-	* commons-io 2.4
-	
-* [Google GSON](http://code.google.com/p/google-gson/)
-	* 2.2.2
+#### Manually
 
-If you are using maven you can also add use the maven dependency thanks to Sonatype/Nexus (Coming soon...):
+You can also go ahead and download the .jar package from the github Downloads page if you wish to manually include the library into your project
 
-
-Also make sure to add in the maven dependencies for HTTP Components, Commons and Google GSON
-     
 ### Usage
 
-To get started, grab a copy of postage app client and set your API key:
+To get started, grab a copy of PostageApp client and set your API key:
 
 		PostageAppClient postageClient = PostageAppFactory.getSingleton();
 		postageClient.setAPIKey("Your API Key Here!");
 	
-Try sending a message,
+#### Sending a Message
 
-	    List<String> recipients = new ArrayList<String>();
-        recipients.add("fakeemail@test.com");
-        
-        MessageParams params = new MessageParams()
-        	.setRecipients(recipients)
-        	.addContentType("text/plain", "This is a test!");
-        	
-        try {
-			client.sendMessage(params);
-		} catch (PostageAppException e) {
-			e.printStackTrace();
-		}
+Setting up a message to send is easy! Using the `MessageParams` class you can build your message before sending it to the API:
+
+	MessageParams params = new MessageParams()
+	
+Once you have configured your `MessageParams` you can ship it off to the API using the `sendMessage` call:
+
+	try {
+		postageClient.sendMessage(params);
+	} catch (PostageAppException exception) {
+		// Handle API Exception
+	}
+	
+##### Adding Recipients
+
+To add a list of recipients to your message:
+
+	List<String> recipients = new ArrayList<String>();
+	recipients.add("someone@someemail.com");
+	
+	params.setRecipients(recipients);
+
+##### Adding Attachments
+
+To add attachments to your message parameters:
+
+	String pdfName = "filename.pdf";
+	String contentType = "application/octet-stream";
+	String encodedData = "BASE64_ENCODED_DATA";
+	
+	params.addAttachment(pdfName, contentType, encodedDate);
+
+##### Adding Content
+
+Adding content to message paramters:
+
+	String contentType = "text/plain";
+	String content = "This is a test!";
+	
+	params.addContentType(contentType, content);
+	
+##### Method Chaining
+
+For convenience, you can also change the building of parameters using the builder pattern:
+
+    List<String> recipients = new ArrayList<String>();
+       recipients.add("fakeemail@test.com");
+       
+       MessageParams params = new MessageParams()
+       	.setRecipients(recipients)
+       	.addContentType("text/plain", "This is a test!");
 
 Besides sending messages you have access to all the other API endpoints as well:
 
@@ -54,13 +91,20 @@ Besides sending messages you have access to all the other API endpoints as well:
 * getMessages
 * getMessageTranmissions
 * getMetrics
+* getMessageStatus
+* getMessageDeliveryStatus
+* getRecipientsList
+
+Refer to the online documation / javadocs for usage for these endpoints.
+
 	
 ### Documentation
 
-[PostageApp API Documentation](http://help.postageapp.com/kb/api/api-overview)
+API Documentation: [PostageApp API Documentation](http://help.postageapp.com/kb/api/api-overview)
 
 
-### Feedback / Props
+### Feedback
 
-* Thanks for the PostageApp guys for helpingout with the API
-	
+* Thanks for the PostageApp guys for their help with the API
+	* [Derek Watson](https://github.com/derek-watson)
+	* [Scott Tadman](https://github.com/tadman)

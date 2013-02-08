@@ -1,5 +1,6 @@
 package postageapp.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class RecipientInfo extends PostageModel {
@@ -57,4 +58,19 @@ public class RecipientInfo extends PostageModel {
 	public Double getSpamReportCount() {
 		return spamReportCount;
 	}
+	
+	@Override
+    public String toString() {
+        Map<String, Object> mappedParams = new HashMap<String, Object>();
+        mappedParams.put("status", this.status);
+        mappedParams.put("message", this.message);
+        mappedParams.put("score", this.score);
+        mappedParams.put("openedCount", this.openedCount);
+        mappedParams.put("clickedCount", this.clickedCount);
+        mappedParams.put("softBounceCount", this.softBounceCount);
+        mappedParams.put("hardBounceCount", this.hardBounceCount);
+        mappedParams.put("optOutCount", this.optOutCount);
+        mappedParams.put("spamReportCount", this.spamReportCount);
+        return this.gson.toJson(mappedParams, this.mapType);
+    }
 }

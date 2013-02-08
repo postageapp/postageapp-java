@@ -1,5 +1,6 @@
 package postageapp.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MessageDeliveryStatus extends PostageModel {
@@ -24,4 +25,13 @@ public class MessageDeliveryStatus extends PostageModel {
 	public String getStatus() {
 		return status;
 	}
+	
+	@Override
+    public String toString() {
+        Map<String, Object> mappedParams = new HashMap<String, Object>();
+        mappedParams.put("status", this.status);
+        mappedParams.put("uniqueId", this.uniqueId);
+        mappedParams.put("recipient", this.recipient);
+        return this.gson.toJson(mappedParams, this.mapType);
+    }
 }
