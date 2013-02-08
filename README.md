@@ -20,7 +20,12 @@ To get started with PostageApp using maven, you can add the following to your po
 	
 #### Manually
 
-You can also go ahead and download the .jar package from the github Downloads page if you wish to manually include the library into your project
+You ahead and download the latest release tag and you can build the uber jar for requiring into your project as well as a
+thin jar if you wish to include the other dependencies yourself. Once you download the tag, go into the project directory and run:
+
+	mvn clean package
+	
+Inside the target/ folder you will have uber jar as well as the thin jar.
 
 ### Usage
 
