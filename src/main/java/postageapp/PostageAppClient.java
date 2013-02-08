@@ -25,4 +25,10 @@ public interface PostageAppClient {
     public MessageTransmissionsResponse getMessageTransmissions(String messageUid) throws PostageAppException;
 
     public Map<String, Map<String, ProjectMetrics>> getMetrics() throws PostageAppException;
+
+    public List<MessageDeliveryStatus> getMessageDeliveryStatus(String messageUid) throws PostageAppException;
+    
+    public Map<String, Integer> getMessageStatus(String messageUid) throws PostageAppException;
+    
+	public Map<String, RecipientInfo> getRecipientsList(String messageUid) throws PostageAppException;    
 }

@@ -16,9 +16,11 @@ import postageapp.http.PostageAppHttpClient;
 import postageapp.http.PostageAppHttpClientImpl;
 import postageapp.models.AccountInfo;
 import postageapp.models.Message;
+import postageapp.models.MessageDeliveryStatus;
 import postageapp.models.MessageTransmissionsResponse;
 import postageapp.models.ProjectInfo;
 import postageapp.models.ProjectMetrics;
+import postageapp.models.RecipientInfo;
 import postageapp.params.MessageParams;
 
 import com.google.gson.Gson;
@@ -39,6 +41,9 @@ public class PostageAppClientImpl implements PostageAppClient {
 		static final String GET_MESSAGES = "get_messages";
 		static final String GET_MESSAGE_TRANSMISSIONS = "get_message_transmissions";
 		static final String GET_METRICS = "get_metrics";
+		static final String MESSAGE_DELIVERY_STATUS = "message_delivery_status";
+		static final String MESSAGE_STATUS = "message_status";
+		static final String GET_RECIPIENTS_LIST = "get_recipients_list";
 	}
 
 	private String apiKey;
@@ -177,6 +182,58 @@ public class PostageAppClientImpl implements PostageAppClient {
 		return metricsMap;
 	}
 
+	@Override
+	public Map<String, RecipientInfo> getRecipientsList(String messageUid)
+			throws PostageAppException {
+		checkAPIKey();
+
+		Map<String, Object> data = this.getDataFromResponse(this.sendRequest(
+				Endpoints.GET_RECIPIENTS_LIST,
+				this.messageUidRequestString(messageUid)));
+
+		Map<String, ?> recipients = (Map<String, ?>) data.get("recipients");
+		Map<String, RecipientInfo> result = new HashMap<String, RecipientInfo>();
+
+		for (String recipient : recipients.keySet()) {
+			result.put(
+					recipient,
+					new RecipientInfo((Map<String, ?>) recipients
+							.get(recipient)));
+		}
+
+		return result;
+	}
+
+	@Override
+	public Map<String, Integer> getMessageStatus(String messageUid)
+			throws PostageAppException {
+		checkAPIKey();
+
+		Map<String, Object> data = this.getDataFromResponse(this.sendRequest(
+				Endpoints.MESSAGE_STATUS,
+				this.messageUidRequestString(messageUid)));
+
+		return (Map<String, Integer>) data.get("message_status");
+	}
+
+	@Override
+	public List<MessageDeliveryStatus> getMessageDeliveryStatus(
+			String messageUid) throws PostageAppException {
+		checkAPIKey();
+
+		Map<String, Object> data = this.getDataFromResponse(this.sendRequest(
+				Endpoints.MESSAGE_DELIVERY_STATUS,
+				this.messageUidRequestString(messageUid)));
+
+		List<Map<String, ?>> statuses = (List<Map<String, ?>>) data
+				.get("delivery_status");
+		List<MessageDeliveryStatus> result = new ArrayList<MessageDeliveryStatus>();
+		for (Map<String, ?> status : statuses) {
+			result.add(new MessageDeliveryStatus(status));
+		}
+		return result;
+	}
+
 	// Since these requests are so small, don't bother creating builders /
 	// params for them
 	private String apiKeyRequestString() {
@@ -199,7 +256,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 				.setPath("/" + this.apiVersion + "/" + endpoint + ".json");
 
 		try {
-			return this.httpClient.post(new HttpPost(uriBuilder.build().toString()), content);
+			return this.httpClient.post(new HttpPost(uriBuilder.build()
+					.toString()), content);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}

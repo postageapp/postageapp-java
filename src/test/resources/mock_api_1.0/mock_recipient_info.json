@@ -1,0 +1,21 @@
+{
+    "response": {
+        "status": "ok",
+        "uid": "1234567890abcdefgh"
+    },
+    "data": {
+        "recipients": {
+            "test@test.com": {
+                "status": "good",
+                "score": 58,
+                "opened_count": 0,
+                "clicked_count": 0,
+                "soft_bounce_count": 0,
+                "hard_bounce_count": 0,
+                "opt_out_count": 0,
+                "spam_report_count": 0,
+                "message": "2.0.0 Ok: queued as ABCDE"
+            }
+        }
+    }
+}

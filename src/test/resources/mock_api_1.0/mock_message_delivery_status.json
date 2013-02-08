@@ -1,0 +1,15 @@
+{
+    "response": {
+        "status": "ok",
+        "uid": "abcdefgho123456"
+    },
+    "data": {
+        "delivery_status": [
+            {
+                "unique_id": "abcdefgho123456",
+                "recipient": "test@test.com",
+                "status": "completed"
+            }
+        ]
+    }
+}
