@@ -1,18 +1,28 @@
 package postageapp;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
+
 import postageapp.http.PostageAppException;
 import postageapp.http.PostageAppHttpClient;
 import postageapp.http.PostageAppHttpClientImpl;
-import postageapp.models.*;
+import postageapp.models.AccountInfo;
+import postageapp.models.Message;
+import postageapp.models.MessageTransmissionsResponse;
+import postageapp.models.ProjectInfo;
+import postageapp.models.ProjectMetrics;
 import postageapp.params.MessageParams;
 
-import java.lang.reflect.Type;
-import java.net.URISyntaxException;
-import java.util.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @SuppressWarnings("unchecked")
 public class PostageAppClientImpl implements PostageAppClient {
@@ -56,7 +66,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 	}
 
 	@Override
-	public double getMessageReceipt(String messageUid) throws PostageAppException {
+	public double getMessageReceipt(String messageUid)
+			throws PostageAppException {
 		checkAPIKey();
 
 		Map<String, ?> data = this.getDataFromResponse(this.sendRequest(
@@ -115,8 +126,8 @@ public class PostageAppClientImpl implements PostageAppClient {
 	}
 
 	@Override
-	public MessageTransmissionsResponse getMessageTransmissions(String messageUid)
-			throws PostageAppException {
+	public MessageTransmissionsResponse getMessageTransmissions(
+			String messageUid) throws PostageAppException {
 		checkAPIKey();
 
 		Map<String, ?> data = this.getDataFromResponse(this.sendRequest(
@@ -188,7 +199,7 @@ public class PostageAppClientImpl implements PostageAppClient {
 				.setPath("/" + this.apiVersion + "/" + endpoint + ".json");
 
 		try {
-			return this.httpClient.post(uriBuilder.build().toString(), content);
+			return this.httpClient.post(new HttpPost(uriBuilder.build().toString()), content);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -200,9 +211,10 @@ public class PostageAppClientImpl implements PostageAppClient {
 			throws PostageAppException {
 		Type mapType = new TypeToken<Map<String, Object>>() {
 		}.getType();
-		Map<String, Object> responseMap = this.gson
-				.fromJson(responseString, mapType);
-		Map<String, Object> response = (Map<String, Object>) responseMap.get("response");
+		Map<String, Object> responseMap = this.gson.fromJson(responseString,
+				mapType);
+		Map<String, Object> response = (Map<String, Object>) responseMap
+				.get("response");
 
 		this.checkForError(response);
 
