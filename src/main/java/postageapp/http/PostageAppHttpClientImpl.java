@@ -13,8 +13,8 @@ public class PostageAppHttpClientImpl implements PostageAppHttpClient {
 
     private String getUserAgent() {
     	StringBuffer buf = new StringBuffer();
-    	buf.append("POSTAGEAPP-JAVA ");
-    	buf.append("(JAVA ");
+    	buf.append("PostageApp-Java ");
+    	buf.append("(Java ");
     	buf.append(System.getProperty("java.version"));
     	buf.append(")");
     	return buf.toString();

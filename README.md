@@ -11,7 +11,7 @@ To get started with PostageApp using maven, you can add the following to your po
 	<dependencies>
 		...
 	    <dependency>
-	      <groupId>com.github.sleroux</groupId>
+	      <groupId>com.github.postageapp</groupId>
 	      <artifactId>postageapp</artifactId>
 	      <version>1.1.0</version>
 	    </dependency>
@@ -105,11 +105,10 @@ Refer to the online documation / javadocs for usage for these endpoints.
 	
 ### Documentation
 
-API Documentation: [PostageApp API Documentation](http://help.postageapp.com/kb/api/api-overview)
+API Documentation: [PostageApp API Documentation](http://dev.postageapp.com/pages/api)
 
+### Contributors
 
-### Feedback
-
-* Thanks for the PostageApp guys for their help with the API
+	* [Stephan Leroux](https://github.com/sleroux)
 	* [Derek Watson](https://github.com/derek-watson)
 	* [Scott Tadman](https://github.com/tadman)

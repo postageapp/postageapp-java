@@ -7,14 +7,14 @@
 		<version>7</version>
 	</parent>
 
-	<groupId>com.github.sleroux</groupId>
+	<groupId>com.github.postageapp</groupId>
 	<artifactId>postageapp</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.2.0</version>
 	<packaging>jar</packaging>
 
 	<name>postageapp</name>
 	<description>Java API wrapper for the PostageApp Transactional Email Service</description>
-	<url>http://postageapp.com</url>
+	<url>http://postageapp.com/</url>
 
 	<licenses>
 		<license>
@@ -31,6 +31,11 @@
 	</scm>
 
 	<developers>
+		<developer>
+			<id>tadman</id>
+			<name>Scott Tadman</name>
+			<email>tadman@postageapp.com</email>
+		</developer>
 		<developer>
 			<id>sleroux</id>
 			<name>Stephan Leroux</name>
